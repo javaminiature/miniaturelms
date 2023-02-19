@@ -4,6 +4,7 @@ This is a sample demo microservice created using Spring Boot and Spring Data hav
 
 # Pre Request 
 
+## cassandra
 ### Install cassadra in local using docker repository .
 
 docker pull cassandra:latest
@@ -21,6 +22,20 @@ values (uuid(), 'MS Office 2022',10.0,'EDX','test_user1', toTimeStamp(now()));
 
 insert into lms.pa_course( course_guid,course_title,total_hours,source,last_update_user,last_update_timestamp)
 values (uuid(), 'Java Spring in Action',10.0,'EDX','test_user1', toTimeStamp(now()));
+
+## consul
+### Install consul in local using docker repository .
+
+https://developer.hashicorp.com/consul/tutorials/day-0/docker-container-agents
+
+### Configure consul key value properties
+
+
+spring.data.cassandra.contact-points:localhost
+
+spring.data.cassandra.keyspace-name:lms
+
+spring.data.cassandra.port:9042
 
 # Run this application 
 
