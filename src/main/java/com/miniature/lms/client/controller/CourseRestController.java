@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +42,16 @@ public class CourseRestController {
 	public void addCourse(@RequestBody CourseDTO courseDTO) {
 		courseDTO.setCourseID(UUID.randomUUID());
 		courseService.addCourse(getCourseVO(courseDTO));
+	}
+
+	@DeleteMapping("/Course")
+	public void deleteCourse(@RequestBody CourseDTO courseDTO) {
+		courseService.deleteCourse(getCourseVO(courseDTO));
+	}
+
+	@PutMapping("/Course")
+	public void updateCourse(@RequestBody CourseDTO courseDTO) {
+		courseService.updateCourse(getCourseVO(courseDTO));
 	}
 
 	protected CourseDTO getCourseDTO(CourseVO courseVO) {

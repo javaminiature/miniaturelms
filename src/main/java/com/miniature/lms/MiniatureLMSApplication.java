@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.miniature.lms"})
 @EnableAutoConfiguration
-@OpenAPIDefinition(info = @Info(title = "Miniature LMS APIs", version = "1.0", description = "LMS API Information"))
+@OpenAPIDefinition(info = @Info(title = "Miniature LMS APIs", version = "1.0", description = "Miniature LMS API Information"))
 public class MiniatureLMSApplication {
 	public static void main(String args[]) {
 		SpringApplication.run(MiniatureLMSApplication.class,args);

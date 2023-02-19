@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import com.miniature.lms.service.api.CourseService;
@@ -15,6 +16,9 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	CourseRepository courseRepository;
+
+	@Autowired
+	private KafkaTemplate<String, Object> kafkaTemplate;
 
 	@Override
 	public List<CourseVO> getCourses() {
@@ -29,5 +33,22 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public void addCourse(CourseVO courseVO) {
 		courseRepository.insert(courseVO);
+		publishMessage(courseVO);
+	}
+
+	@Override
+	public void deleteCourse(CourseVO courseVO) {
+		courseRepository.delete(courseVO);
+		publishMessage(courseVO);
+	}
+
+	@Override
+	public void updateCourse(CourseVO courseVO) {
+		courseRepository.save(courseVO);
+		publishMessage(courseVO);
+	}
+
+	protected void publishMessage(CourseVO courseVO) {
+		kafkaTemplate.send("miniaturelms.course",courseVO);
 	}
 }

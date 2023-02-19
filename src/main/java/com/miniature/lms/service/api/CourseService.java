@@ -25,4 +25,16 @@ public interface CourseService {
 	 * @param courseVO
 	 */
 	void addCourse(CourseVO courseVO);
+
+	/**
+	 * delete a Course
+	 * @param courseVO
+	 */
+	void deleteCourse(CourseVO courseVO);
+
+	/**
+	 * update a Course
+	 * @param courseVO
+	 */
+	void updateCourse(CourseVO courseVO);
 }
